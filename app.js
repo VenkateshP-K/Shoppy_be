@@ -18,7 +18,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
-app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());

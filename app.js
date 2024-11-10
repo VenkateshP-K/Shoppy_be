@@ -8,6 +8,16 @@ const productRouter = require('./routes/productRoutes');
 
 const app = express();
 
+const corsOptions = {
+    origin: ['http://localhost:5173','https://shoppy-be-gb08.onrender.com/api'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  };
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());

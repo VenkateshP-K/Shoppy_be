@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('./models/user');
+const config = require('./config');
 
 const Auth = {
     isAuth: async (req, res, next) => {
@@ -8,7 +9,7 @@ const Auth = {
             return res.status(401).json({ message: "Unauthorized" });
         }
         try {
-            const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            const decodedToken = jwt.verify(token, config.JWT_SECRET);
             req.userId = decodedToken.userId;
             next();
         } catch (error) {

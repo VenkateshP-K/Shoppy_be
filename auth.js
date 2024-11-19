@@ -3,7 +3,7 @@ const User = require('./models/user');
 
 const Auth = {
     isAuth: async (req, res, next) => {
-        const token = req.cookies.token;
+        const token = req.cookies.token; 
         if (!token) {
             return res.status(401).json({ message: "Unauthorized" });
         }
@@ -11,8 +11,7 @@ const Auth = {
             const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
             req.userId = decodedToken.userId;
             next();
-        }
-        catch (error) {
+        } catch (error) {
             return res.status(401).json({ message: error.message });
         }
     },

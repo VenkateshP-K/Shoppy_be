@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { JWT_SECRET } = require('../config');
+const config = require('../config')
 
 const userController = {
     //create a new user
@@ -45,7 +45,7 @@ const userController = {
                 return res.status(401).json({ message: "Invalid credentials" });
             }
     
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+            const token = jwt.sign({ userId: user._id }, config.JWT_SECRET, { expiresIn: '24h' });
     
             // Set the cookie
             res.cookie('token', token, {
